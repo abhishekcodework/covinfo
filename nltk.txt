@@ -1,9 +1,9 @@
-chunkers
+punkt
+corpora
 grammars
 misc
 sentiment
 taggers
-corpora
 models
 stemmers
 tokenizers
