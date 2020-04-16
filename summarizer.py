@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import nltk
 from newspaper import Article
-nltk.download('punkt')
+
 
 from newsapi import NewsApiClient
 
