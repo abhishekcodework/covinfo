@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>COVINFO</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Playfair+Display" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Modern+Antiqua" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{{ url_for('static', filename='mdb.min.css')}}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{{ url_for('static', filename='css/style.min.css')}}" rel="stylesheet">
+</head>
+
+<body>
+
+    <!--Main Navigation-->
+    <header>
+
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark default-color scrolling-navbar">
+            <div class="container">
+
+                <!-- Brand -->
+                <a class="navbar-brand waves-effect" href="#" target="_blank">
+                    <strong class="blue-text">COVINFO</strong>
+                </a>
+
+                <!-- Collapse -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Links -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <!-- Left -->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link waves-effect" href="#">Home
+                                
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="dashboard" >Data visualization</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link waves-effect" href="#" >Current news<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="#" >Symptom matching</a>
+                        </li>
+                    </ul>
+
+                    <!-- Right -->
+                  
+                </div>
+
+            </div>
+        </nav>
+        <br/>
+        <!-- Navbar -->
+        <nav id="navbar-example2" class="navbar fixed-top navbar-expand-lg navbar-dark default-color  scrolling-navbar" style="margin-top: 56px;">
+                <div class="container">    
+            <a class="navbar-brand" href="#">Choose a category:</a>
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link " href="#gen">General news</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#tech">Tech news</a>
+                  </li>
+                  
+                </ul>
+                </div>
+              </nav>
+    </header>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main class="mt-5 pt-5">
+        <div class="container">
+
+            <!--Section: Jumbotron-->
+           
+            <!--Section: Jumbotron-->
+
+            <hr class="my-5">
+
+            <!--Section: Cards-->
+            <section class="text-center">
+                    <div data-spy="scroll" data-target="#gen" class="scrollspy-example z-depth-1 mt-4" data-offset="0">
+                          
+                    <h2 style="font-family: Playfair Display; font-weight: 700;" id="gen">General news :</h2>
+                    <br/>
+                    <hr/>
+                    
+                <!--Grid row-->
+                <div class="row mb-4 wow fadeIn">
+                    
+                    <!--Grid column-->
+                   
+                    <!--Grid column-->
+					
+							
+						{% for i in range(0, data_gen['title'].count())%}
+
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-6 mb-4">
+
+                        <!--Card-->
+                        <div class="card h-100">
+                            <!--Card image-->
+						
+
+                            <div class="view overlay" >
+                                <img src={{ data_gen['imgurl'][i] }}  class="card-img-top" alt="" width="300" height="300">
+                                <a href="https://mdbootstrap.com/automated-app-start/" target="_blank">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+							
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">{{ data_gen['title'][i] }} </h4>
+                                <!--Text-->
+                            
+                            </div>
+							<div class="card-footer">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target='#gensum{{ i }}'>Read summary
+                                    </button>								
+                                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target='#genart{{ i }}'>
+                                        Read entire article
+                                      </button>                                </div>
+                        </div>
+                        <!--/.Card-->
+
+                    </div>
+                    <!--Grid column--><div class="modal fade" id="gensum{{ i }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog modal-notify modal-success" role="document">
+     <!--Content-->
+     <div class="modal-content">
+       <!--Header-->
+       <div class="modal-header">
+         <p class="heading lead">{{ data_gen['title'][i] }}</p>
+
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true" class="white-text">&times;</span>
+         </button>
+       </div>
+
+       <!--Body-->
+       <div class="modal-body">
+         <div class="text-center">
+           <i class="fas fa-newspaper fa-4x mb-3 animated rotateIn"></i>
+           <p>{{ data_gen['summary'][i] }}</p>
+         </div>
+       </div>
+
+       <!--Footer-->
+       <div class="modal-footer justify-content-center">
+         <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Close</a>
+       </div>
+     </div>
+     <!--/.Content-->
+   </div>
+</div>
+   <div class="modal fade bottom" id="genart{{ i }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+
+  <!-- Add class .modal-frame and then add class .modal-bottenom (or other classes from list above) to set a position to the modal -->
+  <div class="modal-dialog  modal-dialog-scrollable  " role="document">
+
+
+    <div class="modal-content">
+            <div class="modal-header">
+                    <p class="heading lead">{{ data_gen['title'][i] }}</p>
+           
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                  </div>
+      <div class="modal-body">
+        <div class="row d-flex text-center justify-content-center align-items-center">
+
+          <p class="pt-3 pr-2">
+                {{ data_gen['text'][i] }}
+		  </p>
+
+          <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Close</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+
+                   						{% endfor %}
+
+
+                <!--Pagination-->
+               </div>
+                <!--Pagination-->
+
+            </section>
+            <!--Section: Cards-->
+            <section class="text-center">
+                    <div data-spy="scroll" data-target="#tech" class="scrollspy-example z-depth-1 mt-4" data-offset="0">
+                    <h2 style="font-family: Playfair Display; font-weight: 700;" id="tech">Tech news :</h2>
+                    <br/>
+                    <hr/>
+                <!--Grid row-->
+                <div class="row mb-4 wow fadeIn">
+                    
+                    <!--Grid column-->
+                   
+                    <!--Grid column-->
+					
+							
+						{% for i in range(0, data_tech['title'].count())%}
+
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-6 mb-4">
+
+                        <!--Card-->
+                        <div class="card h-100">
+                            <!--Card image-->
+						
+
+                            <div class="view overlay" >
+                                <img src={{ data_tech['imgurl'][i] }}  class="card-img-top" alt="" width="300" height="300">
+                                <a href="https://mdbootstrap.com/automated-app-start/" target="_blank">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+							
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">{{ data_tech['title'][i] }} </h4>
+                                <!--Text-->
+                                
+                            </div>
+							<div class="card-footer">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#techsum{{ i }}">Read summary
+                                    </button>								
+                                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#techart{{ i }}">
+                                        Read entire article
+                                      </button>                                </div>
+                        </div>
+                        <!--/.Card-->
+
+                    </div>
+                    <!--Grid column--><div class="modal fade" id="techsum{{ i }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog modal-notify modal-success" role="document">
+     <!--Content-->
+     <div class="modal-content">
+       <!--Header-->
+       <div class="modal-header">
+         <p class="heading lead">{{ data_tech['title'][i] }}</p>
+
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true" class="white-text">&times;</span>
+         </button>
+       </div>
+
+       <!--Body-->
+       <div class="modal-body">
+         <div class="text-center">
+           <i class="fas fa-newspaper fa-4x mb-3 animated rotateIn"></i>
+           <p>{{ data_tech['summary'][i] }}</p>
+         </div>
+       </div>
+
+       <!--Footer-->
+       <div class="modal-footer justify-content-center">
+         <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Close</a>
+       </div>
+     </div>
+     <!--/.Content-->
+   </div>
+</div>
+   <div class="modal fade bottom" id="techart{{ i }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+
+  <!-- Add class .modal-frame and then add class .modal-bottenom (or other classes from list above) to set a position to the modal -->
+  <div class="modal-dialog  modal-dialog-scrollable  " role="document">
+
+
+    <div class="modal-content">
+            <div class="modal-header">
+                    <p class="heading lead">{{ data_tech['title'][i] }}</p>
+           
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                  </div>
+      <div class="modal-body">
+        <div class="row d-flex text-center justify-content-center align-items-center">
+
+          <p class="pt-3 pr-2">
+                {{ data_tech['text'][i] }}
+		  </p>
+
+          <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Close</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+
+                   						{% endfor %}
+
+
+              
+                <!--Pagination-->
+            </div>
+            </section>
+        </div>
+    </main>
+    <!--Main layout-->
+ <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+    <!--Call to action-->
+    
+    <!--/.Call to action-->
+
+    <hr class="my-4">
+
+    <!-- Social icons -->
+    
+    <!-- Social icons -->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+    
+      <a href="#" target="_blank"> Covinfo.com </a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+    <!--/.Footer-->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
+    
+    <!-- Bootstrap tooltips -->	
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
+    <!-- Bootstrap core JavaScript -->
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <!-- MDB core JavaScript -->
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js')}}"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+        // Animations initialization
+        new WOW().init();
+    </script>
+   {% block script %}{% endblock %}
+</body>
+
+</html>
