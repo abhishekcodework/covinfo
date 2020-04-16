@@ -1,1 +1,1 @@
-# covinfoapp
+# covinfo
