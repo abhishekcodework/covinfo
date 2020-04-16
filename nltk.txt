@@ -1,9 +1,1 @@
 punkt
-corpora
-grammars
-misc
-sentiment
-taggers
-models
-stemmers
-tokenizers
