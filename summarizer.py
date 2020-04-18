@@ -14,7 +14,13 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import nltk
 from newspaper import Article
+from datetime import date 
+from datetime import timedelta 
 
+# Get today's date 
+today = date.today() 
+
+yest = today - timedelta(days = 10) 
 
 from newsapi import NewsApiClient
 
@@ -25,8 +31,8 @@ newsapi = NewsApiClient(api_key='9c518b08758c40d6b86e0f4ae00eb373')
 all_articles = newsapi.get_everything(q='covid',
                                       sources='the-hindu,the-times-of-india',
                                       domains='',
-                                      from_param='2020-04-01',
-                                      to='2020-04-13',
+                                      from_param=str(yest),
+                                      to=str(today),
                                       language='en',
                                       sort_by='relevancy',
                                       page=1)
@@ -42,8 +48,8 @@ newsapi = NewsApiClient(api_key='9c518b08758c40d6b86e0f4ae00eb373')
 all_articles1 = newsapi.get_everything(q='covid india',
                                       sources='',
                                       domains='techcrunch.com,Moneycontrol.com',
-                                      from_param='2020-04-01',
-                                      to='2020-04-13',
+                                      from_param=str(yest),
+                                      to=str(today),
                                       language='en',
                                       sort_by='relevancy',
                                       page=1)
