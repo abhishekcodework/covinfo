@@ -4,6 +4,7 @@ nltk
 newsapi-python
 emoji
 newspaper3k
+datetime
 bs4
 Click==7.0
 Flask==1.1.1
