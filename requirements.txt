@@ -1,6 +1,5 @@
 numpy
 pandas
-nltk
 newsapi-python
 emoji
 newspaper3k
