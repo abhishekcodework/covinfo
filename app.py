@@ -13,12 +13,16 @@ import summarizer
 import pr
 app=Flask(__name__)
 
+#data_gen=summarizer.f1()
+#data_tech=summarizer.f2()
+
+@app.route('/')
+def hom():
+  return render_template("home.html")
+
 data_gen=summarizer.f1()
 data_tech=summarizer.f2()
 
-@app.route('/#')
-def hom():
-  return render_template("home.html")
 @app.route('/COVINFO')
 def hello():
   return render_template("news.html",data_gen=data_gen,data_tech=data_tech)
