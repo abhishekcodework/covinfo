@@ -10,21 +10,35 @@ from PIL import Image
 from jinja2 import Template
 from flask import Flask,render_template,redirect,request
 import summarizer
-
+import pr
 app=Flask(__name__)
 
 data_gen=summarizer.f1()
 data_tech=summarizer.f2()
-
-@app.route('/')
-def hell():
-  return render_template("news.html",data_gen=data_gen,data_tech=data_tech)
-
 @app.route('/COVINFO')
 def hello():
   return render_template("news.html",data_gen=data_gen,data_tech=data_tech)
 @app.route('/dashboard')
 def sup():
   return render_template("dashboard.html")
+@app.route('/')
+def hom():
+  return render_template("home.html")
+@app.route('/home')
+def home():
+  return render_template("home.html")
+@app.route('/awareness')
+def awareness():
+  return render_template("awareness.html")
+@app.route('/disease_prediction', methods=['POST'])
+def get_keys():
+  if request.method == 'POST':
+    keys = request.form['keys']
+   
+    pred=pr.diag(keys)
+  return render_template("predictor.html",pred=pred,keys=keys)
+@app.route('/predictor')
+def pred():
+  return render_template("diseasepredictor.html")
 if __name__=='__main__':
   app.run(debug=True)

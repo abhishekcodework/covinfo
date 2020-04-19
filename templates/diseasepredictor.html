@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>COVINFO</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Playfair+Display" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Modern+Antiqua" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{{ url_for('static', filename='css/mdb.min.css')}}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{{ url_for('static', filename='css/style.min.css')}}" rel="stylesheet">
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Lato');
+
+		
+        html, body, div, span, applet, object, iframe, h1, h2,  h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+		.container {
+			display: block;
+			position: absolute;
+			margin: 40px auto;
+			height: auto;
+			width: 200px;
+			padding: 20px;
+			display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+		}
+
+		h2 {
+			color: #AAAAAA;
+		}
+
+		
+
+		input[type=radio]:checked~.check {
+			border: 5px solid rgb(110, 179, 19);
+		}
+
+		input[type=radio]:checked~.check::before {
+			background: rgb(110, 179, 19);
+		}
+
+		input[type=radio]:checked~label {
+			color: rgb(110, 179, 19);
+		}
+
+		.signature {
+			margin: 10px auto;
+			padding: 10px 0;
+			width: 100%;
+		}
+
+		.signature p {
+			text-align: center;
+			font-family: Helvetica, Arial, Sans-Serif;
+			font-size: 0.85em;
+			color: #AAAAAA;
+		}
+
+		.signature .much-heart {
+			display: inline-block;
+			position: relative;
+			margin: 0 4px;
+			height: 10px;
+			width: 10px;
+			background: #AC1D3F;
+			border-radius: 4px;
+			-ms-transform: rotate(45deg);
+			-webkit-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+
+		.signature .much-heart::before,
+		.signature .much-heart::after {
+			display: block;
+			content: '';
+			position: absolute;
+			margin: auto;
+			height: 10px;
+			width: 10px;
+			border-radius: 5px;
+			background: #AC1D3F;
+			top: -4px;
+		}
+
+		.signature .much-heart::after {
+			bottom: 0;
+			top: auto;
+			left: -4px;
+		}
+
+		.signature a {
+			color: #AAAAAA;
+			text-decoration: none;
+			font-weight: bold;
+		}
+
+
+		/* Styles for alert... 
+by the way it is so weird when you look at your code a couple of years after you wrote it XD */
+
+		.alert {
+			box-sizing: border-box;
+			background-color: #91FF00;
+			width: 100%;
+			position: relative;
+			top: 0;
+			left: 0;
+			z-index: 300;
+			padding: 20px 40px;
+			color: #333;
+		}
+
+		.alert h2 {
+			font-size: 22px;
+			color: #232323;
+			margin-top: 0;
+		}
+
+		.alert p {
+			line-height: 1.6em;
+			font-size: 18px;
+		}
+
+		.alert a {
+			color: #232323;
+			font-weight: bold;
+		}
+
+		
+
+		h1 {
+			color: #66FF46;
+		}
+
+		#name {
+			margin-left: 40px;
+		}
+
+		div#memory_board {
+			background: white;
+			width:100%;
+			height: 100%;;
+			padding: 20px;
+			margin: 10px auto;
+		}
+
+		div#memory_board>div {
+			border: mediumaquamarine 0.5px solid;
+			width: 300px;
+			float: left;
+			margin: 10px 10px 10px 10px;
+			padding: 20px 20px 20px 20px;
+			bottom:20px;
+			font-size: 15px;
+			color: white;
+			cursor: pointer;
+			text-align: center;
+		}
+
+		button {
+			align-content: center;
+			background-color: #91FF00;
+			/* Green */
+			border: none;
+			color: blue;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+		}
+
+		h1 {
+			color: #66FF46;
+		}
+
+	div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: yellow;
+  padding: 50px;
+  font-size: 20px;
+}
+
+		
+		@keyframes modalopen {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+	</style>
+
+
+</head>
+
+<body >
+<header>
+
+        <!-- Navbar -->
+          <nav class="navbar fixed-top navbar-expand-lg navbar-dark default-color scrolling-navbar">
+<div class="container-fluid">
+                <!-- Brand -->
+                <a class="navbar-brand waves-effect" href="" >
+                    <strong class="white-text">COVINFO</strong>
+                </a>
+
+                <!-- Collapse -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Links -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <!-- Left -->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link waves-effect" href="home">Home
+                                
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="dashboard" >Data visualization</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link waves-effect" href="COVINFO" >Current news</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link waves-effect" href="awareness" >Awareness</a><span class="sr-only">(current)</span>
+						</li>
+						<li class="nav-item active">
+                            <a class="nav-link waves-effect" href="predictor" >Disease prediction</a>
+                        </li>
+                    </ul>
+
+                    <!-- Right -->
+                  
+                </div>
+</div>
+        </nav>
+        <!-- Navbar -->
+
+	</header>
+	<main class="mt-5 pt-5"></main>
+	<br>
+	<div class="container-fluid" style=" display: flex;
+  justify-content: space-around;
+  align-items: flex-start;">
+
+          <!--Grid column-->
+         
+          <!--Grid column-->
+
+          <!--Grid column-->
+
+            <!--Card-->
+	<form name="" action="/disease_prediction" method="POST">
+                  <!-- Heading -->
+                  <h3 class="dark-grey-text text-center">
+                    <strong>Disease predicion</strong>
+                  </h3>
+                  <hr>
+
+                  
+                 
+
+                  <div class="md-form">
+						<div id="memory_board"></div>
+                  </div>
+				  <div class="md-form">
+					<div id="hidden_element"></div>
+			  </div>
+                    
+                    
+                  <div class="text-center" class="sticky" style=" position: -webkit-sticky;
+				  position: sticky;
+				  top: 0;
+				  padding: 50px;
+				  font-size: 20px;">
+                    <button class="btn btn-default" >Submit</button>
+                    <hr>
+                    
+                  </div>
+                </form>
+	
+	</div>
+            <!--/.Card-->
+
+          <!--Grid column-->
+
+        <!--Grid row-->
+
+      <!-- Content -->
+
+    </div>
+    <!-- Mask & flexbox options-->
+
+  </div>
+
+	<div class="container">
+		<div id="myModal" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 style=" font-family: Papyrus,fantasy ;"> Question :-</h2>
+				</div>
+
+				<div class="modal-body">
+					<div id="question">
+						question
+					</div>
+					<form action="" id="myForm">
+						<div id="option_container">
+							<ul>
+								<li>
+									<input type="radio" id="option_1" name="quiz" value="A" class="radio">
+									<label for="option_1" id="option1">option_1</label>
+
+									<div class="check"></div>
+								</li>
+
+								<li>
+									<input type="radio" id="option_2" name="quiz" value="B" class="radio">
+									<label for="option_2" id="option2">option_1</label>
+
+									<div class="check">
+										<div class="inside"></div>
+									</div>
+								</li>
+
+								<li>
+									<input type="radio" id="option_3" name="quiz" value="C" class="radio">
+									<label for="option_3" id="option3">option_1</label>
+
+									<div class="check">
+										<div class="inside"></div>
+									</div>
+								</li>
+								<li>
+									<input type="radio" id="option_4" name="quiz" value="D" class="radio">
+									<label for="option_4" id="option4">option_1</label>
+
+									<div class="check">
+										<div class="inside"></div>
+									</div>
+								</li>
+							</ul>
+
+						</div>
+						<!-- <h2><button id="result" class="btn btn-success">Submit</button></h2>
+		<h2><button class="btn btn-danger">Pass</button></h2> -->
+						<!-- <input type="button" value="Submit" id="submit_button" onclick="myFunction()">
+		<input type="button" value="Pass" id="pass_button" onclick="myFunction()"> -->
+
+						<button type="button" onclick="displayRadioValue()" id="submit_button">SUBMIT</button>
+						<button type="button" onclick="closewin()" id="pass_button">PASS</button>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</main>
+    <!-- Mask & flexbox options-->
+	<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+			<!--Call to action-->
+			
+			<!--/.Call to action-->
+		
+			<hr class="my-4">
+		
+			<!-- Social icons -->
+			
+			<!-- Social icons -->
+		
+			<!--Copyright-->
+			<div class="footer-copyright py-3">
+			
+			  <a href="" style="color:white;" > Covinfo.com </a>
+			</div>
+			<!--/.Copyright-->
+		
+		  </footer>
+      <!-- Content -->
+    
+
+        <!--Grid row-->
+
+
+		<script type="text/javascript" src="{{ url_for('static', filename='js/script.js')}}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js')}}"></script>
+    
+  <!-- Bootstrap tooltips -->	
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
+  <!-- Bootstrap core JavaScript -->
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+  <!-- MDB core JavaScript -->
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js')}}"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+      // Animations initialization
+      new WOW().init();
+  </script>
+ {% block script %}{% endblock %}
+</body>
+
+</html>

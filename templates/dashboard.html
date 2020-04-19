@@ -11,7 +11,7 @@
   <!-- Bootstrap core CSS -->
   <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="{{ url_for('static', filename='mdb.min.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/mdb.min.css')}}" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="{{ url_for('static', filename='css/style.min.css')}}" rel="stylesheet">
   <style>
@@ -43,8 +43,8 @@ position:absolute;
       <div class="container-fluid">
 
         <!-- Brand -->
-        <a class="navbar-brand waves-effect" href="#" >
-          <strong class="blue-text">COVINFO</strong>
+        <a class="navbar-brand waves-effect" href="" >
+          <strong class="white-text">COVINFO</strong>
         </a>
 
         <!-- Collapse -->
@@ -60,7 +60,7 @@ position:absolute;
           <ul class="navbar-nav mr-auto">
               <ul class="navbar-nav mr-auto">
                   <li class="nav-item ">
-                      <a class="nav-link waves-effect" href="#">Home
+                      <a class="nav-link waves-effect" href="home">Home
                           
                       </a>
                   </li>
@@ -71,8 +71,12 @@ position:absolute;
                       <a class="nav-link waves-effect" href="COVINFO" >Current news</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link waves-effect" href="#" >Symptom matching</a>
+                      <a class="nav-link waves-effect" href="awareness" >Awareness</a>
                   </li>
+                  
+                <li class="nav-item ">
+                    <a class="nav-link waves-effect" href="predictor" >Disease prediction</a>
+                </li>
               </ul>
           </ul>
 
@@ -115,37 +119,32 @@ position:absolute;
 
       <!--Grid row-->
       <div class="row wow fadeIn">
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="card  mb-4" width="400" height="600" >
+                    <!--Card--><div class="card-header text-center" >
+                        Word cloud derived from Covid medical reports</div>
+                    <div class="card-body" >
+
+                    <img src="{{ url_for('static', filename='img/download.png')}}"  height="400"width="100%"class="my-custom-class" style="position:center;"/>
+                    <!--/.Card-->
+          </div></div>
+                  </div>
+              
+        <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-md-9 mb-4">
+        
+        <div class="col-lg-6 col-md-6 mb-4" width="400" height="600">
 
           <!--Card-->
-          <div class="card">
-
-            <!--Card content-->
-            <div class="card-body">
-
-              <canvas id="myChart" width="1000" height="600"></canvas>
-
-            </div>
-
-          </div>
-          <!--/.Card-->
-
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-3 mb-4">
-
-          <!--Card-->
-          <div class="card mb-4">
+          <div class="card  mb-4" width="400" height="600" >
 
             <!-- Card header -->
-            <div class="card-header text-center">
-              Pie chart
+            <div class="card-header text-center" >
+              Pie chart<br/>
+              State:
             </div>
-			State:
+			
 						<select id="select1"class="mdb-select md-form" onclick="getOption()"style="padding:4px; color:gray;" name="state">
 							<option value="Total">Total</option>
 							<option value="Maharashtra">Maharashtra</option>
@@ -187,11 +186,11 @@ position:absolute;
 							<option value="Sikkim">Sikkim</option>
 						</select>
             <!--Card content-->
-            <div class="card-body">
+            <div class="card-body" id="graph-container" >
 
 				  
                  
-              <canvas id="pieChart"></canvas>
+              <canvas id="pieChart" width="400" height="290"></canvas>
 
             </div>
 
@@ -226,7 +225,7 @@ position:absolute;
           <div class="card" height="400">
 
             <!-- Card header -->
-            <div class="card-header" >Line chart</div>
+            <div class="card-header" >Time series based line chart for total cases until now</div>
 
             <!--Card content-->
             <div class="card-body">
@@ -240,21 +239,52 @@ position:absolute;
 
         </div>
         <!--Grid column-->
+        <div class="col-lg-6 col-md-6 mb-4" height="1000">
 
+            <!--Card-->
+            <div class="card" height="400">
+  
+              <!-- Card header -->
+              <div class="card-header" >Time series based line chart for daily cases until now</div>
+  
+              <!--Card content-->
+              <div class="card-body">
+  
+                <canvas id="lineChart2"></canvas>
+  
+              </div>
+  
+            </div>
+            <!--/.Card-->
+  
+          </div>
         <!--Grid column-->
-        <div class="col-lg-6 col-md-6 mb-4">
-
-          <!--Card-->
-          <img src="{{ url_for('static', filename='img/download.png')}}"  class="my-custom-class" />
-          <!--/.Card-->
-
-        </div>
+       
         <!--Grid column-->
 
         <!--Grid column-->
        
           <!--/.Card-->
 
+        </div>
+        <div class="row wow fadeIn">
+            <div class="col-md-2 mb-1">
+            </div>
+            <div class="col-md-9 mb-4">
+
+                <!--Card-->
+                <div class="card">
+      
+                  <!--Card content-->
+                  <div class="card-body">
+                      <canvas id="myChart" width="800" height="600"></canvas>
+
+                    </div>
+        
+                  </div>
+                  <!--/.Card-->
+        
+                </div>
         </div>
         <!--Grid column-->
 
@@ -273,70 +303,28 @@ position:absolute;
   <!--Main layout-->
 
   <!--Footer-->
-  <footer class="page-footer text-center font-small primary-color-dark darken-2 mt-4 wow fadeIn">
+  <footer class="page-footer text-center font-small mt-4 wow fadeIn">
 
     <!--Call to action-->
-    <div class="pt-4">
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank"
-        role="button">Download
-        MDB
-        <i class="fas fa-download ml-2"></i>
-      </a>
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank" role="button">Start
-        free tutorial
-        <i class="fas fa-graduation-cap ml-2"></i>
-      </a>
-    </div>
+    
     <!--/.Call to action-->
 
     <hr class="my-4">
 
     <!-- Social icons -->
-    <div class="pb-4">
-      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
-        <i class="fab fa-facebook-f mr-3"></i>
-      </a>
-
-      <a href="https://twitter.com/MDBootstrap" target="_blank">
-        <i class="fab fa-twitter mr-3"></i>
-      </a>
-
-      <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
-        <i class="fab fa-youtube mr-3"></i>
-      </a>
-
-      <a href="https://plus.google.com/u/0/b/107863090883699620484" target="_blank">
-        <i class="fab fa-google-plus mr-3"></i>
-      </a>
-
-      <a href="https://dribbble.com/mdbootstrap" target="_blank">
-        <i class="fab fa-dribbble mr-3"></i>
-      </a>
-
-      <a href="https://pinterest.com/mdbootstrap" target="_blank">
-        <i class="fab fa-pinterest mr-3"></i>
-      </a>
-
-      <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
-        <i class="fab fa-github mr-3"></i>
-      </a>
-
-      <a href="http://codepen.io/mdbootstrap/" target="_blank">
-        <i class="fab fa-codepen mr-3"></i>
-      </a>
-    </div>
+    
     <!-- Social icons -->
 
     <!--Copyright-->
     <div class="footer-copyright py-3">
-      © 2019 Copyright:
-      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com </a>
+    
+      <a href="" style="color:white;"> Covinfo.com </a>
     </div>
     <!--/.Copyright-->
 
   </footer>
   <!--/.Footer-->
-
+ 
   <!-- SCRIPTS -->
   <!-- JQuery -->
   <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
@@ -366,9 +354,7 @@ async function setup() {
 	 const corona = await getData();
 	 var m = corona.active[0];
 	 
-	 
-	 console.log(corona.states);
-	 console.log(corona.active);
+	
 	     var ctx = document.getElementById("myChart").getContext('2d');
 
     var myChart = new Chart(ctx, {
@@ -413,7 +399,6 @@ async function setup() {
 		const states=[];
 		const active=[];
         m=sw[0].confirmed;
-		console.log(m);var flag=0;
         sw.forEach(function(key) {
 		if(flag === 0){
 		flag=1;
@@ -432,17 +417,21 @@ async function setup() {
     //pie
 	//setupForPie('Total');
 	function getOption() { 
+    $('#pieChart').remove(); // this is my <canvas> element
+  $('#graph-container').append('<canvas id="pieChart" width="400" height="290"><canvas>');
             selectElement =  
                     document.querySelector('#select1'); 
                       
             output = selectElement.value; 
            setupForPie(output);
-		   console.log('in getopt');
         } 
 	async function setupForPie(output) {
-	
 	 const coronapie = await getDataForPie(output);
     var ctxP = document.getElementById("pieChart").getContext('2d');
+    
+    if (myPieChart) {
+      myPieChart.destroy();
+      }
     var myPieChart = new Chart(ctxP, {
       type: 'pie',
       data: {
@@ -454,11 +443,15 @@ async function setup() {
         }]
       },
       options: {
+        legend: false,
         responsive: true,
-        legend: false
+
+// Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+
+maintainAspectRatio: false,
       }
     });
-			   console.log('in setup');
+    
 
 	}
 
@@ -475,7 +468,6 @@ async function getDataForPie(op) {
 		var deaths=0;
 		var recovered=0;
         m=sw[0].confirmed;
-		console.log(m);
         sw.forEach(function(key) {
 		if(op === key.state){
 		state=key.state;
@@ -550,7 +542,66 @@ async function getDataForLine(op) {
 		
 		return {conf, recov, date}
       }
+ //line2
+ setupForLine2();
+	async function setupForLine2() {
+		 const coronaline = await getDataForLine2();
 
+    var ctxL = document.getElementById("lineChart2").getContext('2d');
+    var myLineChart = new Chart(ctxL, {
+      type: 'line',
+      data: {
+        labels: coronaline.date,
+        datasets: [{
+            label: "Daily confirmed cases",
+            backgroundColor: [
+              'transparent',
+            ],
+            borderColor: [
+              '#e6b30c',
+            ],
+            borderWidth: 2,
+            data: coronaline.conf
+          },
+          {
+            label: "Daily recovered cases",
+            backgroundColor: [
+              'white',
+            ],
+            borderColor: [
+              '#94f01b',
+            ],
+            data: coronaline.recov
+          }
+        ]
+      },
+      options: {
+        responsive: true
+      }
+    });
+}
+async function getDataForLine2(op) {
+
+
+       const response = await fetch(api_url);
+        const data = await response.json();
+		var m=0; 
+		sw = data.cases_time_series;
+		const conf=[];
+		const recov=[];
+		const date=[];
+		
+        sw.forEach(function(key) {
+		
+      //console.log(key.state);      console.log(key.active);
+		conf.push(parseFloat(key.dailyconfirmed));
+		recov.push(parseFloat(key.dailyrecovered));
+		date.push(key.date);
+
+    });
+		
+		return {conf, recov, date}
+      }
     //radar
     var ctxR = document.getElementById("radarChart").getContext('2d');
     var myRadarChart = new Chart(ctxR, {
