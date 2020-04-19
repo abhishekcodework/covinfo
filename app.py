@@ -16,7 +16,7 @@ app=Flask(__name__)
 data_gen=summarizer.f1()
 data_tech=summarizer.f2()
 
-@app.route('/')
+@app.route('/#')
 def hom():
   return render_template("home.html")
 @app.route('/COVINFO')
