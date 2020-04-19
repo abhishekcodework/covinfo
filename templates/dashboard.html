@@ -350,10 +350,39 @@ position:absolute;
     // Line
 	      window.addEventListener('load', setup);
 
-async function setup() {
+	var l=[];
+	var d=[];
+	var sw;
+	const api_url='https://api.covid19india.org/data.json';
+	async function getData() {
+    console.log('in getdata');
+
+        const response = await fetch(api_url);
+        const data = await response.json();
+		var m=0; 
+		sw = data.statewise;
+		const states=[];
+		const active=[];
+        m=sw[0].confirmed;
+        var flag=0;
+        sw.forEach(function(key) {
+		if(flag == 0){
+		flag=1;
+		return;
+		}
+      //console.log(key.state);      console.log(key.active);
+		states.push(key.state);
+		active.push(parseFloat(key.confirmed));
+    });
+		
+		return {states, active}
+      }
+
+	 
+      async function setup() {
 	 const corona = await getData();
 	 var m = corona.active[0];
-	 
+	 console.log('in setup');
 	
 	     var ctx = document.getElementById("myChart").getContext('2d');
 
@@ -387,33 +416,6 @@ async function setup() {
         }
       }
     });}
-	var l=[];
-	var d=[];
-	var sw;
-	const api_url='https://api.covid19india.org/data.json';
-	async function getData() {
-        const response = await fetch(api_url);
-        const data = await response.json();
-		var m=0; 
-		sw = data.statewise;
-		const states=[];
-		const active=[];
-        m=sw[0].confirmed;
-        sw.forEach(function(key) {
-		if(flag === 0){
-		flag=1;
-		return;
-		}
-      //console.log(key.state);      console.log(key.active);
-		states.push(key.state);
-		active.push(parseFloat(key.confirmed));
-    });
-		
-		return {states, active}
-      }
-
-	 
-
     //pie
 	//setupForPie('Total');
 	function getOption() { 
@@ -603,111 +605,15 @@ async function getDataForLine2(op) {
 		return {conf, recov, date}
       }
     //radar
-    var ctxR = document.getElementById("radarChart").getContext('2d');
-    var myRadarChart = new Chart(ctxR, {
-      type: 'radar',
-      data: {
-        labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
-        datasets: [{
-          label: "My First dataset",
-          data: [65, 59, 90, 81, 56, 55, 40],
-          backgroundColor: [
-            'rgba(105, 0, 132, .2)',
-          ],
-          borderColor: [
-            'rgba(200, 99, 132, .7)',
-          ],
-          borderWidth: 2
-        }, {
-          label: "My Second dataset",
-          data: [28, 48, 40, 19, 96, 27, 100],
-          backgroundColor: [
-            'rgba(0, 250, 220, .2)',
-          ],
-          borderColor: [
-            'rgba(0, 213, 132, .7)',
-          ],
-          borderWidth: 2
-        }]
-      },
-      options: {
-        responsive: true
-      }
-    });
-
+    
     //doughnut
-    var ctxD = document.getElementById("doughnutChart").getContext('2d');
-    var myLineChart = new Chart(ctxD, {
-      type: 'doughnut',
-      data: {
-        labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
-        datasets: [{
-          data: [300, 50, 100, 40, 120],
-          backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-          hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
-        }]
-      },
-      options: {
-        responsive: true
-      }
-    });
+    
 
   </script>
 
   <!--Google Maps-->
   <script src="https://maps.google.com/maps/api/js"></script>
-  <script>
-    // Regular map
-    function regular_map() {
-      var var_location = new google.maps.LatLng(40.725118, -73.997699);
-
-      var var_mapoptions = {
-        center: var_location,
-        zoom: 14
-      };
-
-      var var_map = new google.maps.Map(document.getElementById("map-container"),
-        var_mapoptions);
-
-      var var_marker = new google.maps.Marker({
-        position: var_location,
-        map: var_map,
-        title: "New York"
-      });
-    }
-
-    new Chart(document.getElementById("horizontalBar"), {
-      "type": "horizontalBar",
-      "data": {
-        "labels": ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Grey"],
-        "datasets": [{
-          "label": "My First Dataset",
-          "data": [22, 33, 55, 12, 86, 23, 14],
-          "fill": false,
-          "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
-            "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)",
-            "rgba(54, 162, 235, 0.2)",
-            "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"
-          ],
-          "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)",
-            "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)",
-            "rgb(201, 203, 207)"
-          ],
-          "borderWidth": 1
-        }]
-      },
-      "options": {
-        "scales": {
-          "xAxes": [{
-            "ticks": {
-              "beginAtZero": true
-            }
-          }]
-        }
-      }
-    });
-
-  </script>
+  
    
 </body>
 
