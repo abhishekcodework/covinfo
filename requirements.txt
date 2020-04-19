@@ -1,6 +1,7 @@
 numpy
 pandas
 joblib
+nltk
 newsapi-python
 emoji
 newspaper3k
