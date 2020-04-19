@@ -12,6 +12,7 @@ Original file is located at
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import nltk
 from newspaper import Article
 from datetime import date 
 from datetime import timedelta 
