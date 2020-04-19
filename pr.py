@@ -40,7 +40,7 @@ def diag(w):
 	a = [0 if x !=1 else x for x in a]
 	y_diagnosis = dt1.predict([a])
 	y_pred_2 = dt1.predict_proba([a])
-	return(dt1.predict([a]))
+	return(y_diagnosis[0])
 
 #diag("11,22,33")
 
