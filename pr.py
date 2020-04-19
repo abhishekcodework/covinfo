@@ -19,7 +19,7 @@ x = pd.read_csv('f.csv')
 pkl_filename = 'dt(1).pkl'
 #saved the model 
 # Load the model from the file 
-dt = joblib.load('dt(1).pkl')
+dt = joblib.load('my_model_for_healthcare.pkl')
 
 #choices should be key value of symptoms space separated eg: "1 12 26 130"
 def diag(b):
