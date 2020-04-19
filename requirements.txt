@@ -1,4 +1,5 @@
 nltk
+sklearn
 numpy
 pandas
 joblib
