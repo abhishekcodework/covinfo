@@ -165,14 +165,14 @@ for i in range(len(all_articles1['articles'])):
 #df.to_pickle('/content/drive/My Drive/df_news_gen.pkl')
 #df1.to_pickle('/content/drive/My Drive/df_news_tech.pkl')
 
-data_gen = df.to_dict() 
-data_tech = df1.to_dict()
+#data_gen = df.to_dict() 
+#data_tech = df1.to_dict()
 
 
 #data_dict
 def f1():
-  return df
+  return df.iloc[::-1]
 
 def f2():
-  return df1
+  return df1.iloc[::-1]
 #data_dict['summary'][0]
