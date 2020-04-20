@@ -21,7 +21,7 @@
 		@import url('https://fonts.googleapis.com/css?family=Lato');
 
 		
-        html, body, div, span, applet, object, iframe, h1, h2,  h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+        html, body,  span, applet, object, iframe, h1, h2,  h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
     margin: 0;
     padding: 0;
     border: 0;
@@ -29,7 +29,22 @@
     font-size: 100%;
     vertical-align: baseline;
     background: transparent;
-}
+}	@media (min-width: 600px)  {
+	#sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+	padding-top: 50px; 
+  font-size: 20px;
+  text-align: center;
+  z-index: 0;
+}}
+@media (max-width: 600px)  {
+	#sticky {
+  position: relative;
+  display: flex;
+
+}}
 		.container {
 			display: block;
 			position: absolute;
@@ -163,7 +178,7 @@ by the way it is so weird when you look at your code a couple of years after you
 
 		div#memory_board>div {
 			border: mediumaquamarine 0.5px solid;
-			width: 300px;
+			width: 290px;
 			float: left;
 			margin: 10px 10px 10px 10px;
 			padding: 20px 20px 20px 20px;
@@ -190,15 +205,7 @@ by the way it is so weird when you look at your code a couple of years after you
 		h1 {
 			color: #66FF46;
 		}
-
-	div.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  background-color: yellow;
-  padding: 50px;
-  font-size: 20px;
-}
+	
 
 		
 		@keyframes modalopen {
@@ -254,7 +261,9 @@ by the way it is so weird when you look at your code a couple of years after you
 						<li class="nav-item active">
                             <a class="nav-link waves-effect" href="predictor" >Disease prediction</a>
                         </li>
-                    </ul>
+					</ul>
+					
+					
 
                     <!-- Right -->
                   
@@ -283,9 +292,8 @@ by the way it is so weird when you look at your code a couple of years after you
                     <strong>Disease predicion</strong>
                   </h3>
                   <hr>
+				 
 
-                  
-                 
 
                   <div class="md-form">
 						<div id="memory_board"></div>
@@ -293,17 +301,11 @@ by the way it is so weird when you look at your code a couple of years after you
 				  <div class="md-form">
 					<div id="hidden_element"></div>
 			  </div>
-                    
-                    
-                  <div class="text-center" class="sticky" style=" position: -webkit-sticky;
-				  position: sticky;
-				  top: 0;
-				  padding: 50px;
-				  font-size: 20px;">
-                    <button class="btn btn-default" >Submit</button>
-                    <hr>
-                    
-                  </div>
+			  <div class="text-center">
+
+			  <button class="btn btn-default text-center"  style="	align-content: center;">Submit</button>
+			</div>
+   
                 </form>
 	
 	</div>
