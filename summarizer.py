@@ -27,8 +27,8 @@ from newsapi import NewsApiClient
 newsapi = NewsApiClient(api_key='9c518b08758c40d6b86e0f4ae00eb373')
 
 # /v2/everything
-all_articles = newsapi.get_everything(q='covid',
-                                      sources='the-hindu,the-times-of-india',
+all_articles = newsapi.get_everything(q='covid india',
+                                      sources='bbc-news,the-hindu,cnn',
                                       domains='',
                                       from_param=str(yest),
                                       to=str(today),
